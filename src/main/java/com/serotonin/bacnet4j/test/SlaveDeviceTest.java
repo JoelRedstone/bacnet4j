@@ -23,11 +23,15 @@
 package com.serotonin.bacnet4j.test;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import com.serotonin.bacnet4j.LocalDevice;
 import com.serotonin.bacnet4j.RemoteDevice;
 import com.serotonin.bacnet4j.RemoteObject;
 import com.serotonin.bacnet4j.event.DeviceEventListener;
+import com.serotonin.bacnet4j.exception.BACnetServiceException;
 import com.serotonin.bacnet4j.npdu.ip.IpNetwork;
 import com.serotonin.bacnet4j.obj.BACnetObject;
 import com.serotonin.bacnet4j.obj.FileObject;
@@ -58,8 +62,8 @@ import com.serotonin.bacnet4j.type.primitive.UnsignedInteger;
 public class SlaveDeviceTest {
     public static void main(String[] args) throws Exception {
         LocalDevice localDevice = new LocalDevice(1969, new Transport(new IpNetwork("192.168.0.255", 2068)));
-        localDevice.getConfiguration().setProperty(PropertyIdentifier.objectName,
-                new CharacterString("BACnet4J slave device test"));
+//        localDevice.getConfiguration().setProperty(PropertyIdentifier.objectName,
+//                new CharacterString("BACnet4J slave device test"));
         localDevice.getEventHandler().addListener(new Listener());
         // localDevice.getConfiguration().setProperty(PropertyIdentifier.segmentationSupported,
         // Segmentation.noSegmentation);
@@ -67,9 +71,10 @@ public class SlaveDeviceTest {
         // Set up a few objects.
         BACnetObject ai0 = new BACnetObject(localDevice,
                 localDevice.getNextInstanceObjectIdentifier(ObjectType.analogInput));
-        ai0.setProperty(PropertyIdentifier.units, EngineeringUnits.centimeters);
+//        ai0.setProperty(PropertyIdentifier.units, EngineeringUnits.centimeters);
         // Set the COV threshold/increment which is the value at which COV notifications will be triggered
-        ai0.setProperty(PropertyIdentifier.covIncrement, new Real(0.2f));
+//        ai0.setProperty(PropertyIdentifier.covIncrement, new Real(0.2f));
+        ai0.setProperty(PropertyIdentifier.covPeriod, new UnsignedInteger(1));
         localDevice.addObject(ai0);
 
         BACnetObject ai1 = new BACnetObject(localDevice,
@@ -134,6 +139,9 @@ public class SlaveDeviceTest {
         // Send an iam.
         localDevice.sendGlobalBroadcast(localDevice.getIAm());
 
+        listObjects(localDevice);
+
+
         // Let it go...
         float ai0value = 0;
         float ai1value = 0;
@@ -157,6 +165,22 @@ public class SlaveDeviceTest {
             bi1.setProperty(PropertyIdentifier.presentValue, bi1value ? BinaryPV.active : BinaryPV.inactive);
 
             Thread.sleep(2500);
+        }
+    }
+
+    private static void listObjects(LocalDevice localDevice) throws BACnetServiceException {
+        System.out.println("listing");
+        List<BACnetObject> list = new ArrayList<>();
+        list = localDevice.getLocalObjects();
+        Iterator iterator = list.iterator();
+        while (iterator.hasNext()) {
+            BACnetObject obj = (BACnetObject) iterator.next();
+            if(obj.getId().toString().equals("Analog Input 0")) {
+                System.out.println(obj.getId() + " " + obj.getProperties() + obj.getProperty(PropertyIdentifier.covPeriod));
+            } else {
+                System.out.println(obj.getId() + " " + obj.getProperties());
+            }
+
         }
     }
 

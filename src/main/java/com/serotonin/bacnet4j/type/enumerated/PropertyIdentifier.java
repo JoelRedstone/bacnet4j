@@ -265,6 +265,7 @@ public class PropertyIdentifier extends Enumerated {
     public static final PropertyIdentifier faultHighLimit = new PropertyIdentifier(388);
     public static final PropertyIdentifier faultLowLimit = new PropertyIdentifier(389);
     public static final PropertyIdentifier profileLocation = new PropertyIdentifier(485);
+    public static final PropertyIdentifier covMinSendTime = new PropertyIdentifier(492);
 
     public static final PropertyIdentifier[] ALL = { ackedTransitions, ackRequired, action, actionText, activeText,
             activeVtSessions, alarmValue, alarmValues, all, allWritesSuccessful, apduSegmentTimeout, apduTimeout,
@@ -305,7 +306,7 @@ public class PropertyIdentifier extends Enumerated {
             doorStatus, doorUnlockDelayTime, lockStatus, maskedAlarmValues, securedStatus, passbackMode, backupAndRestoreState,
             backupPreparationTime, restoreCompletionTime, restorePreparationTime, eventMessageTexts, eventMessageTextsConfig,
             eventDetectionEnable, eventAlgorithmInhibit, eventAlgorithmInhibitRef, timeDelayNormal, reliabilityEvaluationInhibit,
-            faultHighLimit, faultLowLimit, profileLocation};
+            faultHighLimit, faultLowLimit, profileLocation, covMinSendTime};
 
     public PropertyIdentifier(int value) {
         super(value);
@@ -788,6 +789,8 @@ public class PropertyIdentifier extends Enumerated {
             return "Fault low limit";
         if (type == profileLocation.intValue())
             return "Profile location";
+        if (type == covMinSendTime.intValue())
+            return "COV min send time";
         return "Unknown: " + type;
     }
 }

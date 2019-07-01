@@ -370,6 +370,7 @@ public class ObjectProperties {
         add(ObjectType.analogInput, PropertyIdentifier.faultHighLimit, Real.class, false, false, null);
         add(ObjectType.analogInput, PropertyIdentifier.faultLowLimit, Real.class, false, false, null);
         add(ObjectType.analogInput, PropertyIdentifier.profileLocation, CharacterString.class, true, false, null);
+        add(ObjectType.analogInput, PropertyIdentifier.covPeriod, UnsignedInteger.class, false, false, null);
 
         // Analog output
         add(ObjectType.analogOutput, PropertyIdentifier.objectIdentifier, ObjectIdentifier.class, false, true,
@@ -412,6 +413,7 @@ public class ObjectProperties {
         add(ObjectType.analogOutput, PropertyIdentifier.eventAlgorithmInhibit, Boolean.class, false, true, new Boolean(true));
         add(ObjectType.analogOutput, PropertyIdentifier.eventAlgorithmInhibitRef, ObjectPropertyReference.class, true,
                 false, null);
+        add(ObjectType.analogOutput, PropertyIdentifier.covPeriod, UnsignedInteger.class, false, false, null);
 
         // Analog value
         add(ObjectType.analogValue, PropertyIdentifier.objectIdentifier, ObjectIdentifier.class, false, true,
@@ -450,6 +452,9 @@ public class ObjectProperties {
         add(ObjectType.analogValue, PropertyIdentifier.eventAlgorithmInhibit, Boolean.class, false, true, new Boolean(true));
         add(ObjectType.analogValue, PropertyIdentifier.eventAlgorithmInhibitRef, ObjectPropertyReference.class, true,
                 false, null);
+        add(ObjectType.analogValue, PropertyIdentifier.covPeriod, UnsignedInteger.class, false, false, null);
+        add(ObjectType.analogValue, PropertyIdentifier.minPresValue, Real.class, false, false, null);
+        add(ObjectType.analogValue, PropertyIdentifier.maxPresValue, Real.class, false, false, null);
 
         // Averaging
         add(ObjectType.averaging, PropertyIdentifier.objectIdentifier, ObjectIdentifier.class, false, true,
@@ -511,6 +516,7 @@ public class ObjectProperties {
         add(ObjectType.binaryInput, PropertyIdentifier.eventAlgorithmInhibit, Boolean.class, false, true, new Boolean(true));
         add(ObjectType.binaryInput, PropertyIdentifier.eventAlgorithmInhibitRef, ObjectPropertyReference.class, true,
                 false, null);
+        add(ObjectType.binaryInput, PropertyIdentifier.covPeriod, UnsignedInteger.class, false, false, null);
 
         // Binary output
         add(ObjectType.binaryOutput, PropertyIdentifier.objectIdentifier, ObjectIdentifier.class, false, true,
@@ -555,6 +561,7 @@ public class ObjectProperties {
         add(ObjectType.binaryOutput, PropertyIdentifier.eventAlgorithmInhibit, Boolean.class, false, true, new Boolean(true));
         add(ObjectType.binaryOutput, PropertyIdentifier.eventAlgorithmInhibitRef, ObjectPropertyReference.class, true,
                 false, null);
+        add(ObjectType.binaryOutput, PropertyIdentifier.covPeriod, UnsignedInteger.class, false, false, null);
 
         // Binary value
         add(ObjectType.binaryValue, PropertyIdentifier.objectIdentifier, ObjectIdentifier.class, false, true,
@@ -597,6 +604,7 @@ public class ObjectProperties {
         add(ObjectType.binaryValue, PropertyIdentifier.eventAlgorithmInhibit, Boolean.class, false, true, new Boolean(true));
         add(ObjectType.binaryValue, PropertyIdentifier.eventAlgorithmInhibitRef, ObjectPropertyReference.class, true,
                 false, null);
+        add(ObjectType.binaryValue, PropertyIdentifier.covPeriod, UnsignedInteger.class, false, false, null);
 
         // Calendar
         add(ObjectType.calendar, PropertyIdentifier.objectIdentifier, ObjectIdentifier.class, false, true,
@@ -607,6 +615,7 @@ public class ObjectProperties {
         add(ObjectType.calendar, PropertyIdentifier.presentValue, Boolean.class, false, true, null);
         add(ObjectType.calendar, PropertyIdentifier.dateList, CalendarEntry.class, true, true, null);
         add(ObjectType.calendar, PropertyIdentifier.profileName, CharacterString.class, false, false, null);
+        add(ObjectType.calendar, PropertyIdentifier.covPeriod, UnsignedInteger.class, false, false, null);
 
         // Command
         add(ObjectType.command, PropertyIdentifier.objectIdentifier, ObjectIdentifier.class, false, true,
@@ -623,6 +632,7 @@ public class ObjectProperties {
         add(ObjectType.command, PropertyIdentifier.eventMessageTexts, CharacterString.class, true, false, null);
         add(ObjectType.command, PropertyIdentifier.eventMessageTextsConfig, CharacterString.class, true, false, null);
         add(ObjectType.command, PropertyIdentifier.eventDetectionEnable, Boolean.class, false, true, new Boolean(true));
+        add(ObjectType.command, PropertyIdentifier.covPeriod, UnsignedInteger.class, false, false, null);
 
         // Device
         add(ObjectType.device, PropertyIdentifier.objectIdentifier, ObjectIdentifier.class, false, true,
@@ -823,7 +833,8 @@ public class ObjectProperties {
         add(ObjectType.lifeSafetyPoint, PropertyIdentifier.eventDetectionEnable, Boolean.class, false, true, new Boolean(true));
         add(ObjectType.lifeSafetyPoint, PropertyIdentifier.eventAlgorithmInhibit, Boolean.class, false, true, new Boolean(true));
         add(ObjectType.lifeSafetyPoint, PropertyIdentifier.eventAlgorithmInhibitRef, ObjectPropertyReference.class, true,
-                false, null); // added by Joel
+                false, null);
+        add(ObjectType.lifeSafetyPoint, PropertyIdentifier.covPeriod, UnsignedInteger.class, false, false, null);
 
         // Life safety zone
         add(ObjectType.lifeSafetyZone, PropertyIdentifier.objectIdentifier, ObjectIdentifier.class, false, true,
@@ -868,6 +879,7 @@ public class ObjectProperties {
         add(ObjectType.lifeSafetyZone, PropertyIdentifier.eventAlgorithmInhibit, Boolean.class, false, true, new Boolean(true));
         add(ObjectType.lifeSafetyZone, PropertyIdentifier.eventAlgorithmInhibitRef, ObjectPropertyReference.class, true,
                 false, null);
+        add(ObjectType.lifeSafetyZone, PropertyIdentifier.covPeriod, UnsignedInteger.class, false, false, null);
 
         // Load control
         add(ObjectType.loadControl, PropertyIdentifier.objectIdentifier, ObjectIdentifier.class, false, true,
@@ -992,6 +1004,7 @@ public class ObjectProperties {
         add(ObjectType.multiStateInput, PropertyIdentifier.eventAlgorithmInhibit, Boolean.class, false, true, new Boolean(true));
         add(ObjectType.multiStateInput, PropertyIdentifier.eventAlgorithmInhibitRef, ObjectPropertyReference.class, true,
                 false, null);
+        add(ObjectType.multiStateInput, PropertyIdentifier.covPeriod, UnsignedInteger.class, false, false, null);
 
         // Multi state output
         add(ObjectType.multiStateOutput, PropertyIdentifier.objectIdentifier, ObjectIdentifier.class, false, true,
@@ -1032,6 +1045,7 @@ public class ObjectProperties {
         add(ObjectType.multiStateOutput, PropertyIdentifier.eventAlgorithmInhibit, Boolean.class, false, true, new Boolean(true));
         add(ObjectType.multiStateOutput, PropertyIdentifier.eventAlgorithmInhibitRef, ObjectPropertyReference.class, true,
                 false, null);
+        add(ObjectType.multiStateOutput, PropertyIdentifier.covPeriod, UnsignedInteger.class, false, false, null);
 
         // Multi state value
         add(ObjectType.multiStateValue, PropertyIdentifier.objectIdentifier, ObjectIdentifier.class, false, true,
@@ -1070,6 +1084,7 @@ public class ObjectProperties {
         add(ObjectType.multiStateValue, PropertyIdentifier.eventAlgorithmInhibit, Boolean.class, false, true, new Boolean(true));
         add(ObjectType.multiStateValue, PropertyIdentifier.eventAlgorithmInhibitRef, ObjectPropertyReference.class, true,
                 false, null);
+        add(ObjectType.multiStateValue, PropertyIdentifier.covPeriod, UnsignedInteger.class, false, false, null);
 
         // Notification class
         add(ObjectType.notificationClass, PropertyIdentifier.objectIdentifier, ObjectIdentifier.class, false, true,
