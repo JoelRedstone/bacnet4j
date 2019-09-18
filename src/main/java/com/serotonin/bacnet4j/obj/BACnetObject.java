@@ -75,7 +75,7 @@ public class BACnetObject implements Serializable {
     private final LocalDevice localDevice;
     private final ObjectIdentifier id;
     private final Map<PropertyIdentifier, Encodable> properties = new HashMap<PropertyIdentifier, Encodable>();
-    private final List<ObjectCovSubscription> covSubscriptions = new ArrayList<ObjectCovSubscription>();
+    public final List<ObjectCovSubscription> covSubscriptions = new ArrayList<ObjectCovSubscription>();
     private boolean setDefaultValues = true;
 
     public BACnetObject(LocalDevice localDevice, ObjectIdentifier id) {
